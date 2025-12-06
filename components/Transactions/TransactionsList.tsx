@@ -11,6 +11,7 @@ export default function TransactionsList() {
           <TransactionItem {...item} />
         </View>
       )}
+      showsVerticalScrollIndicator={false}
     />
   );
 }

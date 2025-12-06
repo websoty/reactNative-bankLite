@@ -2,7 +2,7 @@ import { Image, Text, View } from "react-native";
 
 export default function Header() {
   return (
-    <View className="flex-row justify-between items-center mt-8 mb-10">
+    <View className="flex-row justify-between items-center mt-8 mb-5 px-4">
       <View>
         <Text className="text-4xl font-bold">Hello!</Text>
       </View>
