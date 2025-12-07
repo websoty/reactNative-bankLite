@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 export const transactions = [
   {
+    id: 1,
     title: "Deposit",
     subtitle: "April",
     amount: "$5,000.00",
@@ -9,6 +10,7 @@ export const transactions = [
     icon: "card" as keyof typeof Ionicons.glyphMap,
   },
   {
+    id: 2,
     title: "Apple",
     subtitle: "Apple",
     amount: "$99.99",
@@ -17,6 +19,7 @@ export const transactions = [
     color: "#228B22",
   },
   {
+    id: 3,
     title: "Amazon",
     subtitle: "Amazon",
     amount: "$250.00",
@@ -25,6 +28,7 @@ export const transactions = [
     color: "#9370DB",
   },
   {
+    id: 4,
     title: "Netflix",
     subtitle: "Netflix",
     amount: "$9.99",
@@ -33,6 +37,7 @@ export const transactions = [
     color: "#FF0000",
   },
   {
+    id: 5,
     title: "Auchan",
     subtitle: "Auchan",
     amount: "$51.30",
@@ -41,6 +46,7 @@ export const transactions = [
     color: "#70c2dbff",
   },
   {
+    id: 6,
     title: "Pivas",
     subtitle: "April",
     amount: "$16.20",
@@ -49,6 +55,7 @@ export const transactions = [
     color: "#e7dd50ff"
   },
   {
+    id: 7,
     title: "GYM",
     subtitle: "April",
     amount: "$76.00",

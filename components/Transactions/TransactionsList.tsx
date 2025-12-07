@@ -1,17 +1,16 @@
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import { transactions } from "../../app/data/transactions";
-import TransactionItem from "./TransactionsItem";
+import TransactionItem from "./TransactionItem";
 export default function TransactionsList() {
   return (
     <FlatList
       data={transactions}
-      keyExtractor={(item) => item.title}
-      renderItem={({ item }) => (
-        <View className="mb-4 px-5">
-          <TransactionItem {...item} />
-        </View>
-      )}
-      showsVerticalScrollIndicator={false}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => <TransactionItem {...item} />}
+      contentContainerStyle={{
+        paddingHorizontal: 20,
+        paddingBottom: 100,
+      }}
     />
   );
 }
