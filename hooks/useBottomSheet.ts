@@ -1,7 +1,7 @@
 import BottomSheet from "@gorhom/bottom-sheet";
 import { useMemo, useRef, useState } from "react";
 
-export function useDepositSheet() {
+export function useBottomSheet() {
   const bottomSheetRef = useRef<React.ComponentRef<typeof BottomSheet>>(null);
 
   const snapPoints = useMemo(() => ["30%", "20%"], []);
@@ -10,12 +10,9 @@ export function useDepositSheet() {
 
   const openSheet = () => {
     (bottomSheetRef.current as any)?.expand();
-
   };
-
   const closeSheet = () => {
     (bottomSheetRef.current as any)?.close();
-
   };
 
   return {
