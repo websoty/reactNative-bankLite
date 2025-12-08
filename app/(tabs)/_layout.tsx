@@ -7,6 +7,7 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: "#005C3C",
         tabBarStyle: {
           height: 70,
