@@ -2,7 +2,17 @@ import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Text, TextInput, TouchableOpacity } from "react-native";
 import { SheetBaseProps } from "../SheetBaseProps";
 
-export default function BottomSheetWithdraw({amount, setAmount, closeSheet}: SheetBaseProps) {
+export default function BottomSheetWithdraw({amount, setAmount, closeSheet, onConfirm }: SheetBaseProps) {
+
+  const handleConfirm = () => {
+  const value = Number(amount);
+  if (value > 0) {
+    setAmount("");
+    onConfirm(value);
+    closeSheet();
+  }
+};
+
   return (
     <BottomSheetView className="p-5 bg-gray-200 min-h-[300px]">
       <Text className="text-lg font-semibold mb-3">Withdraw funds</Text>
@@ -14,7 +24,7 @@ export default function BottomSheetWithdraw({amount, setAmount, closeSheet}: She
         onChangeText={setAmount}
       />
 
-      <TouchableOpacity className="bg-green-700 py-3 rounded-xl">
+      <TouchableOpacity className="bg-green-700 py-3 rounded-xl" onPress={handleConfirm}>
         <Text className="text-white text-center font-semibold">Confirm</Text>
       </TouchableOpacity>
 

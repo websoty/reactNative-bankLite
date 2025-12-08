@@ -5,39 +5,50 @@ import WithdrawSheet from "@/components/BottomSheets/Withdraw/WithdrawSheet";
 import Header from "@/components/Header/Header";
 import { TransactionsList } from "@/components/Transactions";
 import { useBottomSheet } from "@/hooks/useBottomSheet";
+import { RootState } from "@/store";
+import { deposit, withdraw } from "@/store/financeSlice";
 import React from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-  const deposit = useBottomSheet();
-  const withdraw = useBottomSheet();
+  const balance = useSelector((state: RootState) => state.finance.balance);
+  const dispatch = useDispatch();
+
+  const depositSheet = useBottomSheet();
+  const withdrawSheet = useBottomSheet();
 
   return (
     <SafeAreaView className="flex-1 bg-white">
 
       <View className="px-5">
         <Header />
-        <BalanceCard balance={7113.35} />
-        <ActionBtns onDepositPress={deposit.openSheet} onWithdrawPress={withdraw.openSheet} />
+        <BalanceCard balance={balance} />
+        <ActionBtns 
+        onDepositPress={depositSheet.openSheet} 
+        onWithdrawPress={withdrawSheet.openSheet} />
       </View>
 
       <TransactionsList />
 
       <DepositSheet
-        bottomSheetRef={deposit.bottomSheetRef}
-        snapPoints={deposit.snapPoints}
-        amount={deposit.amount}
-        setAmount={deposit.setAmount}
-        closeSheet={deposit.closeSheet}
+        bottomSheetRef={depositSheet.bottomSheetRef}
+        snapPoints={depositSheet.snapPoints}
+        amount={depositSheet.amount}
+        setAmount={depositSheet.setAmount}
+        closeSheet={depositSheet.closeSheet}
+        onConfirm={(value: number) => dispatch(deposit(value))}
+
       />
 
       <WithdrawSheet
-        bottomSheetRef={withdraw.bottomSheetRef}
-        snapPoints={withdraw.snapPoints}
-        amount={withdraw.amount}
-        setAmount={withdraw.setAmount}
-        closeSheet={withdraw.closeSheet}
+        bottomSheetRef={withdrawSheet.bottomSheetRef}
+        snapPoints={withdrawSheet.snapPoints}
+        amount={withdrawSheet.amount}
+        setAmount={withdrawSheet.setAmount}
+        closeSheet={withdrawSheet.closeSheet}
+        onConfirm={(value: number) => dispatch(withdraw(value))}
       />
 
     </SafeAreaView>

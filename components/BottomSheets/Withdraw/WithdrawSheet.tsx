@@ -1,5 +1,5 @@
 import BottomSheet from "@gorhom/bottom-sheet";
-import BottomSheetWithdraw from "./BottomSheetWithdraw";
+import BottomSheetWithdraw from "./WithdrawContent";
 
 
 export default function WithdrawSheet({
@@ -7,7 +7,8 @@ export default function WithdrawSheet({
   snapPoints,
   amount,
   setAmount,
-  closeSheet,}: any) {
+  closeSheet,
+  onConfirm}: any) {
 
     return (
       <BottomSheet
@@ -20,6 +21,7 @@ export default function WithdrawSheet({
           amount={amount}
           setAmount={setAmount}
           closeSheet={closeSheet}
+          onConfirm={onConfirm}
         />
       </BottomSheet>
     )

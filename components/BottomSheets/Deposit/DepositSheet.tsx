@@ -1,5 +1,5 @@
 import BottomSheet from "@gorhom/bottom-sheet";
-import BottomSheetDeposit from "./BottomSheetDeposit";
+import BottomSheetDeposit from "./DepositContent";
 
 export default function DepositSheet({
   bottomSheetRef,
@@ -7,7 +7,9 @@ export default function DepositSheet({
   amount,
   setAmount,
   closeSheet,
+  onConfirm,
 }: any) {
+
   return (
     <BottomSheet
       ref={bottomSheetRef}
@@ -19,6 +21,7 @@ export default function DepositSheet({
         amount={amount}
         setAmount={setAmount}
         closeSheet={closeSheet}
+        onConfirm={onConfirm}
       />
     </BottomSheet>
   );

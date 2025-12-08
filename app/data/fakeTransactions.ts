@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 
-export const transactions = [
+export const fakeTransactions = [
   {
     id: 1,
     title: "Deposit",
