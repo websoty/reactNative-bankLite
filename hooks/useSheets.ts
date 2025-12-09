@@ -4,9 +4,10 @@ export function useSheets() {
   const ref = useRef<any>(null);
 
   const snapPoints = useMemo(() => ["25%", "40%"], []);
-  const [sheetType, setSheetType] = useState<"deposit" | "withdraw" | null>(null);
+  type SheetType = "deposit" | "withdraw" | "settings" | null;
+  const [sheetType, setSheetType] = useState<SheetType>(null);
 
-  const openSheet = (type: "deposit" | "withdraw") => {
+  const openSheet = (type: SheetType) => {
     setSheetType(type);
     ref.current?.expand();
   };
