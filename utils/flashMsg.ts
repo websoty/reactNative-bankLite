@@ -17,11 +17,3 @@ export const flashError = (message: string) => {
     duration: 2500,
   });
 };
-
-export const flashInfo = (message: string) => {
-  showMessage({
-    message,
-    type: "info",
-    icon: "info",
-  });
-}

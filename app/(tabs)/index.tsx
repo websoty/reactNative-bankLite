@@ -4,11 +4,14 @@ import { SheetsManager } from "@/components/BottomSheets/SheetsManager";
 import Header from "@/components/Header/Header";
 import { TransactionsList } from "@/components/Transactions";
 import { useSheets } from "@/hooks/useSheets";
-import { RootState } from "@/store";
+import { RootState, store } from "@/store";
 import { deposit, withdraw } from "@/store/financeSlice";
+import { saveData } from "@/utils/storage";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
+
+
 export default function Home() {
   const dispatch = useDispatch();
   const balance = useSelector((state: RootState) => state.finance.balance);
@@ -34,8 +37,12 @@ export default function Home() {
         snapPoints={snapPoints}
         sheetType={sheetType}
         closeSheet={closeSheet}
-        onDeposit={(value: number) => dispatch(deposit(value))}
-        onWithdraw={(value: number) => dispatch(withdraw(value))}
+        onDeposit={(value: number) => {dispatch(deposit(value))
+          saveData(store.getState().finance);
+         }}
+        onWithdraw={(value: number) => {dispatch(withdraw(value))
+          saveData(store.getState().finance);
+        }}
       />
     </SafeAreaView>
   );
