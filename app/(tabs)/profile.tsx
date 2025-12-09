@@ -1,12 +1,15 @@
 import ProfileSheets from "@/components/BottomSheets/profileSheets";
+import { useSheets } from "@/hooks/useSheets";
 import { Ionicons } from "@expo/vector-icons";
+import BottomSheet from "@gorhom/bottom-sheet";
 import { useState } from "react";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 
 export default function Profile() {
   const [email, setEmail] = useState("example@example.com");
   const [editing, setEditing] = useState(false);
-  const [tempEmail, setTempEmail] = useState("");
+  const [tempEmail, setTempEmail] = useState(email);
+  const { ref, snapPoints, sheetType, openSheet, closeSheet } = useSheets();
 
   const save = () => {
     setEmail(tempEmail);
@@ -57,14 +60,21 @@ export default function Profile() {
           </>
         )}
 
-        <Pressable className="bg-gray-200 py-3 px-4 rounded-xl w-1/2">
+        <Pressable
+        onPress={() => openSheet("settings")}
+        className="bg-gray-200 py-3 px-4 rounded-xl w-1/2">
           <Text className="text-xl text-center">Settings</Text>
         </Pressable>
 
       </View>
-      <View>
-        <ProfileSheets />
-      </View>
+      <BottomSheet
+        ref={ref}
+        snapPoints={snapPoints}
+        index={-1}
+        enablePanDownToClose
+        >
+        {sheetType === "settings" && (<ProfileSheets closeSheet={closeSheet} />)}
+      </BottomSheet>
     </>
   );
 }
