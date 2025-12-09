@@ -1,6 +1,7 @@
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useState } from "react";
 import { Keyboard, Text, TextInput, TouchableOpacity } from "react-native";
+import { showMessage } from "react-native-flash-message";
 
 type DepositContentProps = {
   closeSheet: () => void; // close actual sheet
@@ -14,12 +15,17 @@ export default function DepositContent({closeSheet, onConfirm,}: DepositContentP
   const handleConfirm = () => {
     const value = Number(amount);
 
-    if (value > 0) {
+    if (value <= 0) {
+      showMessage({
+        message: "Enter a valid amount!",
+        type: "danger",
+      });
+      return;
+    }
       onConfirm(value); // redux + close
       closeSheet();
       setAmount("");
       Keyboard.dismiss();
-    }
   };
 
   return (

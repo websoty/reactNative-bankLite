@@ -1,6 +1,9 @@
+import { RootState } from "@/store";
+import { flashError } from "@/utils/flashMsg";
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useState } from "react";
 import { Keyboard, Text, TextInput, TouchableOpacity } from "react-native";
+import { useSelector } from "react-redux";
 
 type WithdrawContentProps = {
   closeSheet: () => void;
@@ -9,15 +12,24 @@ type WithdrawContentProps = {
 
 export default function WithdrawContent({closeSheet, onConfirm,}: WithdrawContentProps) {
   const [amount, setAmount] = useState("");
+  const balance = useSelector((state: RootState) => state.finance.balance);
 
   const handleConfirm = () => {
     const value = Number(amount);
-    if (value > 0) {
+    
+    if (!value) {
+      flashError('Enter a valid amount!');
+      return;
+    }
+
+    if (value > balance) {
+      flashError("You can't get more than your balance!");
+      return;
+    }
       onConfirm(value);
       closeSheet();
       setAmount("");
       Keyboard.dismiss();
-    }
   };
 
   return (
