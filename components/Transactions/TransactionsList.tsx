@@ -3,10 +3,15 @@ import { RootState } from "@/store";
 import { FlatList } from "react-native";
 import { useSelector } from "react-redux";
 import TransactionItem from "./TransactionItem";
-export default function TransactionsList() {
+import { TransactionsProps } from "./types";
+
+type Props = {
+  data?: TransactionsProps[];
+};
+export default function TransactionsList({data}: Props) {
   const transactions = useSelector((state: RootState) => state.finance.transactions);
 
-  const allTransactions = [...transactions, ...fakeTransactions];
+  const allTransactions = data ?? [...transactions, ...fakeTransactions];
   return (
     <FlatList
       data={allTransactions}
