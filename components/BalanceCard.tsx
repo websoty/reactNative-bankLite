@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Platform, Text, View } from "react-native";
 
 type Money = {
   balance: number;
@@ -6,10 +6,14 @@ type Money = {
 
 export function BalanceCard({ balance }: Money) {
   return (
-    <View className="bg-[#F0F8FF] p-8 rounded-2xl mx-2">
+    <View className={Platform.OS === "web" 
+      ? "bg-[#fff236] p-8 rounded-2xl mx-2 w-[500px] mx-auto"
+      : "bg-[#F0F8FF] p-8 rounded-2xl mx-2"}>
       <Text className="text-gray-600 mb-2 text-xl">Balance</Text>
 
-      <Text className="text-5xl font-bold mb-4">
+      <Text className={Platform.OS === "web" 
+      ? "text-5xl font-bold mb-4" 
+      : "text-4xl font-bold mb-4"}>
         ${balance.toLocaleString()}
       </Text>
     </View>

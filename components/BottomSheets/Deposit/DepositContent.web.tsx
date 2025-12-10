@@ -1,6 +1,5 @@
-import { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useState } from "react";
-import { Keyboard, Text, TextInput, TouchableOpacity } from "react-native";
+import { Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { showMessage } from "react-native-flash-message";
 
 type DepositContentProps = {
@@ -42,15 +41,15 @@ export default function DepositContent({closeSheet, onConfirm, currentBalance}: 
   };
 
   return (
-    <BottomSheetView className="p-5 bg-gray-200 min-h-[300px]">
-      <Text className="text-lg font-semibold mb-3">Deposit funds</Text>
+    <View className="bg-white p-8 rounded-2xl mx-auto w-full max-w-[450px] shadow-lg">
+      <Text className="text-2xl font-bold mb-4">Deposit funds</Text>
 
       <TextInput
         placeholder="Enter amount"
         keyboardType="numeric"
         value={amount}
         onChangeText={setAmount}
-        className="border border-gray-300 rounded-xl px-4 py-3 mb-4 bg-white"
+        className="border border-gray-300 rounded-xl px-4 py-3 mb-4 bg-gray-100"
       />
 
       <TouchableOpacity
@@ -66,6 +65,6 @@ export default function DepositContent({closeSheet, onConfirm, currentBalance}: 
       >
         <Text className="text-white text-center font-semibold">Close</Text>
       </TouchableOpacity>
-    </BottomSheetView>
+    </View>
   );
 }

@@ -44,8 +44,9 @@ export const financeSlice = createSlice({
         color: "#ef4444",
       });
     },
+    resetData:() => initialState,
   },
 });
 
-export const {deposit, withdraw } = financeSlice.actions;
+export const {deposit, withdraw, resetData } = financeSlice.actions;
 export default financeSlice.reducer;

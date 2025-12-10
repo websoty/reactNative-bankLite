@@ -2,7 +2,7 @@ import DepositContent from "@/components/BottomSheets/Deposit/DepositContent";
 import WithdrawContent from "@/components/BottomSheets/Withdraw/WithdrawContent";
 import BottomSheet from "@gorhom/bottom-sheet";
 
-export function SheetsManager({ ref, snapPoints, sheetType, closeSheet, onDeposit, onWithdraw }: any) {
+export function SheetsManager({ ref, snapPoints, sheetType, closeSheet, onDeposit, onWithdraw, balance}: any) {
   return (
     <BottomSheet
       ref={ref}
@@ -15,6 +15,7 @@ export function SheetsManager({ ref, snapPoints, sheetType, closeSheet, onDeposi
         <DepositContent
           onConfirm={onDeposit}
           closeSheet={closeSheet}
+          currentBalance={balance}
         />
       )}
 
