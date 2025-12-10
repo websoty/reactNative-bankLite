@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { CurrencyBtcIcon } from "phosphor-react-native";
 import { Image, Pressable, Text, View } from "react-native";
+import Circle from "../../components/circle";
 
 
 export default function Header() {
@@ -12,10 +13,16 @@ export default function Header() {
           <Text className="text-4xl font-bold">Hello!</Text>
         </View>
 
-        <Image
+        <View className="relative w-16 h-16 items-center justify-center">
+          <Image
           source={{ uri: "https://i.pravatar.cc/150?img=15" }}
           className="w-16 h-16 rounded-full"
         />
+        <View className="absolute inset-0 items-center justify-center">
+        <Circle size={80} progress={40} />
+        </View>
+        
+        </View>
       </View>
 
       <View className="flex-row justify-between gap-2 mb-4">
