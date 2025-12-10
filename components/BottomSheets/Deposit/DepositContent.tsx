@@ -6,20 +6,33 @@ import { showMessage } from "react-native-flash-message";
 type DepositContentProps = {
   closeSheet: () => void; // close actual sheet
   onConfirm: (value: number) => void; // redux otpravka value
+  currentBalance: number,
 };
 
 
-export default function DepositContent({closeSheet, onConfirm,}: DepositContentProps) {
+export default function DepositContent({closeSheet, onConfirm, currentBalance}: DepositContentProps) {
   const [amount, setAmount] = useState("");
 
   const handleConfirm = () => {
-    const value = Number(amount);
+  const maxLimit = 200000;
+  const value = Number(amount);
 
     if (value <= 0) {
       showMessage({
         message: "Enter a valid amount!",
         type: "danger",
       });
+      return;
+    }
+
+
+    if (value + currentBalance > maxLimit) {
+      const isOk = Math.max(0, maxLimit - currentBalance)
+      showMessage({
+        message: "Card limit is 200.000!",
+        type: "danger",
+        description: isOk > 0 ? `You can deposit up to $${isOk}` : "You can't deposit more!"
+      })
       return;
     }
       onConfirm(value); // redux + close

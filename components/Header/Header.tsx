@@ -4,26 +4,36 @@ import { CurrencyBtcIcon } from "phosphor-react-native";
 import { Image, Pressable, Text, View } from "react-native";
 import Circle from "../../components/circle";
 
+type HeaderProps = {
+  progressLimit: number,
+  limit: number,
+  balance: number
+};
 
-export default function Header() {
+export default function Header({progressLimit, limit, balance}:HeaderProps) {
   return (
     <>
-      <View className="flex-row justify-between items-center mt-8 mb-5 px-4">
+    <View className="flex-row justify-between items-center mt-8 mb-5 px-4">
         <View>
           <Text className="text-4xl font-bold">Hello!</Text>
         </View>
 
-        <View className="relative w-16 h-16 items-center justify-center">
+      <View className="relative w-16 h-16 items-center justify-center">
           <Image
           source={{ uri: "https://i.pravatar.cc/150?img=15" }}
           className="w-16 h-16 rounded-full"
         />
-        <View className="absolute inset-0 items-center justify-center">
-        <Circle size={80} progress={40} />
-        </View>
-        
+          <View className="absolute inset-0 items-center justify-center">
+          <Circle size={70} progress={progressLimit} />   
         </View>
       </View>
+    </View>
+          <View className="flex-row justify-center mb-4 gap-1 px-2">
+            <Text className="text-m font-semibold">Available balance / Limit balance:</Text>
+            <Text className="text-m font-semibold text-right text-gray-500">
+              ${balance.toLocaleString()} / ${limit.toLocaleString()}
+            </Text>
+          </View>
 
       <View className="flex-row justify-between gap-2 mb-4">
 
