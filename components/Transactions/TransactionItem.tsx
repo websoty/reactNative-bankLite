@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Text, View } from "react-native";
+import { Platform, Text, View } from "react-native";
 import { TransactionsProps } from "./types";
 
 export default function Transactions({
@@ -11,7 +11,13 @@ export default function Transactions({
   color = "black",
 }: TransactionsProps) {
   return (
-    <View className="flex-row justify-between items-center bg-white p-4 rounded-xl shadow-sm">
+    <View       
+    className={`
+        flex-row justify-between items-center bg-white rounded-xl shadow-sm
+        ${Platform.OS === "web" 
+          ? "p-6 mb-4 w-full max-w-[1000px] mx-auto" 
+          : "p-4 mb-2"}
+      `}>
       <View className="flex-row items-center">
         <Ionicons name={icon} size={34} color={color} />
 

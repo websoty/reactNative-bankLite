@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { Platform, Text, TouchableOpacity, View } from "react-native";
 type Props = {
   onDepositPress: () => void;
   onWithdrawPress: () => void;
@@ -8,7 +8,9 @@ type Props = {
 
 export default function ActionBtns({onDepositPress, onWithdrawPress }: Props) {
   return (
-    <View className="flex-row items-center justify-between mt-4">
+    <View className={Platform.OS === "web"
+    ? "flex-row items-center justify-center mt-4 w-full max-w-[500px] mx-auto"
+    :"flex-row items-center justify-center mt-4"}>
 
       <TouchableOpacity
         className="flex-1 py-3 border border-gray-300 rounded-xl mr-2"
