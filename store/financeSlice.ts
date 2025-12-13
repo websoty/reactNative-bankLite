@@ -4,11 +4,20 @@ import { TransactionsProps } from "../components/Transactions/types";
 type financeState = {
   balance: number;
   transactions: TransactionsProps[];
+  rates: {
+    USD: number,
+    EUR: number
+  } | null;
+  ratesLoading: boolean,
+  ratesError: string | null
 };
 
 const initialState: financeState = {
   balance: 7113.35,
   transactions: [],
+  rates: null,
+  ratesLoading: false,
+  ratesError: null
 };
 
 export const financeSlice = createSlice({
@@ -45,8 +54,24 @@ export const financeSlice = createSlice({
       });
     },
     resetData:() => initialState,
+
+    ratesStarting(state) {
+      state.ratesLoading = true;
+      state.ratesError = null;
+    },
+
+    ratesSuccess(state, action:PayloadAction<{ USD: number; EUR: number }>) {
+      state.rates = action.payload;
+      state.ratesLoading = false;
+    },
+
+    ratesFailed(state, action:PayloadAction<string>) {
+      state.ratesError = action.payload;
+      state.ratesLoading = false;
+    }
   },
+
 });
 
-export const {deposit, withdraw, resetData } = financeSlice.actions;
+export const {deposit, withdraw, resetData, ratesStarting, ratesSuccess, ratesFailed, } = financeSlice.actions;
 export default financeSlice.reducer;

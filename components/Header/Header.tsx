@@ -1,9 +1,10 @@
+import IconOne from "@/components/Icons/IconOne";
+import RatesWidget from "@/components/RatesWidget";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { CurrencyBtcIcon } from "phosphor-react-native";
 import { Image, Pressable, Text, View } from "react-native";
 import Circle from "../../components/circle";
-
 type HeaderProps = {
   progressLimit: number,
   limit: number,
@@ -16,7 +17,11 @@ export default function Header({progressLimit, limit, balance}:HeaderProps) {
     <View className="flex-row justify-between items-center mt-8 mb-5 px-4">
         <View>
           <Text className="text-4xl font-bold">Hello!</Text>
+          <IconOne size={100}/>
         </View>
+          <View className="mt-2">
+    <RatesWidget />
+  </View>
 
       <View className="relative w-16 h-16 items-center justify-center">
           <Image

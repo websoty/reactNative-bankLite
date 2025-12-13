@@ -1,3 +1,4 @@
+import IconOne from "@/components/Icons/IconOne";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { CurrencyBtcIcon } from "phosphor-react-native";
@@ -19,6 +20,7 @@ export default function HeaderWeb({ progressLimit, limit, balance }: HeaderProps
       
       <View className="flex-row justify-between items-center mt-12 mb-12 px-8">
         <Text className="text-6xl font-bold">Hello!</Text>
+          <IconOne size={100}/>
 
         <View className="relative w-28 h-28 items-center justify-center">
           <Image
